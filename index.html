@@ -1,0 +1,24 @@
+<!DocType html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS load image test</title>
+<head>
+<body>
+<span id="con"></span>
+<script>
+function showImg( url ) {
+        var imgid = Math.random(),
+                frameid = 'frameimg' + imgid;
+        window['img'+imgid] = '<img id="img" src=\''+url+'\' />' +
+                        '<script>window.onload = function(){' +
+                        'parent.document.getElementById(\''+frameid+'\').width=document.getElementById(\'img\').width+\'px\';' +
+                        'parent.document.getElementById(\''+frameid+'\').height=document.getElementById(\'img\').height+\'px\';' +
+                        '}<'+'/script>';
+        return '<iframe id="'+frameid+'" src="javascript:parent[\'img'+imgid+'\'];" frameBorder="0" scrolling="no" width="100%"></iframe>';
+}
+
+document.getElementById('con').innerHTML = showImg('http://s15.sinaimg.cn/mw690/0047zf7Lzy6HgKZc9fo0e&690');
+</script>
+</body>
+</html>
